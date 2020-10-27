@@ -7,7 +7,4 @@ The hazard combinations modelled are floods and debris flow in accordance to the
 
 Requirements: 
 
-GDAL
-OpenLisem
-PC Raster
-GIS software packages: QGIS/ArcGIS 
+GDAL, OpenLisem, PC Raster, GIS software packages: QGIS/ArcGIS 
