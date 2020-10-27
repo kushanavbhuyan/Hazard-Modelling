@@ -1,0 +1,91 @@
+#! --matrixtable --lddout
+
+############################################
+# Model:                                   #
+# Date:                                    #
+# Version: 1.0                             #
+# Author:                                  #
+############################################
+
+
+binding
+
+## Maps are in metres
+dem = dem.map;
+
+initial
+
+##########DEM and channel characteristics generation##############
+report mask.map = catchments.map;
+report grad.map = sin(atan(slope(dem.map)));
+report ldd.map = lddcreate(dem,1e5,1e5,1e5,1e5);
+report accuflux.map = accuflux(ldd.map,1.0);
+report catchments.map = catchment(ldd.map,nominal(outlet.map));
+
+report channel.map = scalar(if(accuflux.map gt 200, 1.0, 0.0));
+report channelldd.map = lddcreate(-accuflux.map * if(channel.map gt 0.8, 1.0), 1e7, 1e7, 1e7, 1e7);
+
+report channeldepth.map = channel.map * 0.015*9.68*accuflux.map**0.32;
+report channelwidth.map = channel.map * 11.3 * accuflux.map ** 0.083;
+
+
+#################LANDUSE attributes############################### 
+
+report cover.map = max(0.01, 1.0-exp(-2.0 * ndvi.map/(1-max(ndvi.map,0.02))));
+report lai.map = max(0.01, ln(1.0- cover.map)/(-0.4));
+
+report rr.map =lookupscalar(lu.tbl, 1, lu.map); # percentage
+report n.map =lookupscalar(lu.tbl, 2, lu.map); # percentage
+report ch.map =lookupscalar(lu.tbl, 3, lu.map); # percentage
+
+########################SOIL######################################
+### Please refer to the soil script for the soil depth map###
+report soildepth.map = sd.map * 1000; # to convert to cubic mm for OpenLisem usage
+
+###soil data preparation###
+##Conversion to cubic mm
+S = sand.map/1000.0;
+C = clay.map/1000.0;
+OM = oc.map/1000.0 * 1.72; #To convert organic carbon to organic matter
+Gravel = coarse.map/1000.0;
+Densityfactor = 0.9; 
+
+#Output of the soil maps
+report sand1.map = S;
+report clay1.map = C;
+report om1.map = OM;
+report gravel1.map = Gravel;
+
+
+  ######## multiple regression eq#######################
+  M1500 =-0.024*S+0.487*C+0.006*OM+0.005*S*OM-0.013*C*OM+0.068*S*C+0.031; #W18) 
+  M1500adj =M1500+0.14*M1500-0.02; #X18) 
+  M33  =-0.251*S+0.195*C+0.011*OM+0.006*S*OM-0.027*C*OM+0.452*S*C+0.299; #Y18) 
+  M33adj = M33+(1.283*M33*M33-0.374*M33-0.015); #Z18) 
+  PM33    = 0.278*S+0.034*C+0.022*OM-0.018*S*OM-0.027*C*OM-0.584*S*C+0.078; #AA18)
+  PM33adj = PM33+(0.636*PM33-0.107); #AB18)
+  SatPM33 = M33adj + PM33adj; #AC18)
+  SatSadj = -0.097*S+0.043; #AD18)
+  SadjSat = SatPM33  + SatSadj; #AE18)
+  Dens_om = (1-SadjSat)*2.65; #AF18)
+  Dens_comp = Dens_om * Densityfactor; #AG18)
+  PORE_comp =(1-Dens_om/2.65)-(1-Dens_comp/2.65); #AI18)
+  M33comp = M33adj - 0.2*PORE_comp; #AJ18)
+    	
+  #output 
+  report thetas1.map = cover(1-(Dens_comp/2.65),0.5); #AH18)
+  PoreMcomp = thetas1.map-M33comp; #AK18)
+  LAMBDA = (ln(M33comp)-ln(M1500adj))/(ln(1500)-ln(33)); #AL18)
+  GravelRedKsat =(1-Gravel)/(1-Gravel*(1-1.5*(Dens_comp/2.65))); #AM18)
+  report Ksat1.map =cover(1930*(PoreMcomp)**(3-LAMBDA)*GravelRedKsat,10.0); #AN18)
+  report BD1.map = Gravel*2.65+(1-Gravel)*Dens_comp;    #U18
+  report WP1.map = M1500adj;
+  report FC1.map = M33adj;
+  report PAW1.map = (M33adj - M1500adj)*(1-Gravel);
+
+  bB = (ln(1500)-ln(33))/((ln(FC1.map)-ln(WP1.map)));
+  aA = exp(ln(33) + bB*ln(FC1.map));
+
+  report psi1.map = cover(max(10, aA*(FC1.map + 0.7 * (thetas1.map - FC1.map))**-bB),0.0);
+  report thetai1.map = (FC1.map + 0.7 * (thetas1.map - FC1.map));
+

@@ -1,0 +1,462 @@
+[openLISEM runfile version 1.0]
+
+[Input]
+Work Directory=C:/Data/Teaching/Lisem Hazard/Datasets/
+Map Directory=C:/Data/Teaching/Lisem Hazard/Datasets/Acheron_Landslide/maps/
+Include Rainfall=1
+Rainfall Directory=C:/Data/Teaching/Lisem Hazard/Datasets/StLucia_FlashFlood/rainfall/
+Rainfall file=0.txt
+Include Snowmelt=0
+Snowmelt Directory=/
+Snowmelt file=
+[display]
+Image Directory=C:/Data/Teaching/Lisem Hazard/Datasets/rain/
+Image file=
+Mask Directory=C:/Data/Teaching/Lisem Hazard/Datasets/rain/
+Mask file=
+Include Image=0
+Include Mask=0
+
+[Output]
+Result Directory=C:/Data/Teaching/Lisem Hazard/Datasets/Acheron_Landslide/res2/
+Main results file=TOT.TXT
+Filename point output=suds.csv
+Report point output separate=1
+Timeplot as CSV=1
+Timeplot as PCRaster=0
+Report point output for SOBEK=0
+SOBEK date string=2012/06/25/
+Rainfall map=rainfall.map
+Interception map=interception.map
+Infiltration map=infiltration.map
+Runoff map=runoff.map
+Runoff fraction map=rofraction.map
+Channel discharge map=chandism3.map
+Erosion map=eros.map
+Deposition map=depo.map
+Soilloss map=soilloss.map
+Filename landunit output=totlandunit.txt
+Channel detachment map=chandet.map
+Channel deposition map=chandep.map
+WH max level map=whmax.map
+Flood level map=floodmax.map
+Flood time map=floodtime.map
+Flood start time=floodstart.map
+
+Channel Max Q=channelmaxq.map
+Channel Max WH=channelmaxhw.map
+Flood stats=floodstats.csv
+Maximum Debris Flow Height Map=maxdebrisflowheight.map
+Maximum Debris Flow Velocity Map=maxdebrisflowvelocity.map
+Debris Flow Start Map=debrisflowstart.map
+Entrainment Map=entrainment.map
+Slope Failure Map=slopefailure.map
+Minimum Safety Factor Map=minimumsafetyfactor.map
+
+[Simulation times]
+Begin time=0
+End time=600
+Timestep=2
+
+[General options]
+Include Rainfall=1
+Include snowmelt=0
+No Erosion simulation=0
+Include Erosion simulation=1
+Advanced sediment=0
+Include main channels=0
+Include channel infil=0
+Include channel baseflow=0
+Hard Surfaces=0
+Include road system=1
+Include house storage=1
+Include raindrum storage=0
+
+[Interception]
+Use canopy storage map=0
+Canopy storage equation=2
+Stemflow fraction=0.054
+Canopy Openess=0.450
+Include litter interception=0
+Litter interception storage=1.00
+
+[Infiltration]
+Infil Method=0
+Include compacted=0
+Include crusts=0
+Impermeable sublayer=1
+Include percolation=0
+Table Directory=
+Table File=D:\data\sen\ganspoel\maps97j\profile.inp
+SWATRE internal minimum timestep=0
+Matric head files=0
+Geometric mean Ksat=0
+Use Water Repellency=0
+Water Repellency A=1.2
+Water Repellency B=0.3
+Water Repellency C=0.12
+Water Repellency D=1
+Include tile drains=0
+
+[Surface Flow]
+Enable Solid Phase=0
+Enable Entrainment=0
+Enable Deposition=1
+Enable Compaction=1
+Enable Seismic=0
+Enable Slope Stability=0
+Enable Upslope Forcing=0
+Enable Downslope Forcing=0
+Include Bedrock Layer=0
+Enable Slope Failure=0
+Minimum Safety Factor=0.90
+Maximum Safety Factor=1.00
+Maximum safety factor for display=3.50
+Entrainment Coefficient=0.00012
+Minimum Entrainment Height=0.05
+Minimum Failure Height=0.10
+Spatially Dynamic Timestep=0
+Limit Cores=0
+Core Limit=1
+Enable Levees=0
+Enable Barriers=0
+Enable Flow Barriers=0
+Flow barrier table filename=flowbarriers.txt
+Enable Inflow=0
+Inflow table filename=inflow.txt
+Enable Inflow Channel=0
+Inflow table filename Channel=inflow.txt
+Include Initial FluidSolid Mixture=1
+Include Forced FluidSolid Mixture=0
+Include Maximum ChannelVolume=0
+Include Channel Connection=0
+Incldue Maximum Volume=0
+Flow Minimum Timestep=0.100
+Kinematic Timestep Power=2.00
+Surface Flow Courant Factor=0.10
+Surface Flow Scheme=2
+Drag Power Law Coefficient=1
+Viscosity Alpha=1.000000
+Viscosity Beta=20.000000
+Minimal Flood Water Depth=0.10
+Minimum Debris Flow Volumetric Sediment Fraction=0.20
+Use HLL2=0
+Solid-Fluid Drag Coefficient=999.00
+Suspended Viscosity=0
+Lax Multiplier=0.00
+Friction force correction=1.00
+Erosion Cohesion Calibration=0.50
+Erosion Grain Size Calibration=1.00
+
+[Kinetic Energy]
+KE parameters EQ1=1,8.950,0.520,0.042
+KE parameters EQ2=0,8.950,8.440
+KE parameters EQ3=0,7.600,0.220
+KE time based=0
+Detachment efficiency=1
+Use material depth=0
+
+[Sediment]
+Advanced sediment configuration=0
+BL method=0
+SS method=1
+Estimate grain size distribution=1
+Number of grain size classes (simulated)=5
+Read grain distribution maps=0
+Grain size class maps=
+Use material depth=0
+Sigma diffusion=1.00
+Limit TC=0
+Limit Deposition TC=0
+
+[Conservation]
+Include grass strips=0
+Grassstrip Mannings n=0.3
+Include buffers=0
+Buffers impermeable=0
+Sediment bulk density=1800.
+Include Sediment traps=0
+
+[Calibration]
+Ksat calibration=1.000
+N calibration=1.000
+Theta calibration=1.000
+Psi calibration=1.000
+Channel Ksat calibration=1.000
+Channel N calibration=1.000
+Erosive Power Calibration=1.00
+Transport Capacity Calibration=1.00
+Settling Velocity Calibration=1.00
+Internal Friction Angle=0.20
+Dynamic Viscosity Calibration=1.00
+Drag Force Calibration=999999.00
+Solid Phase Friction Calibration=1.00
+Release Volume Calibration=1.00
+Limit Failure=0
+Soil Cohesion Calibration=11.00
+Soil Internal Friction Angle Calibration=0.90
+Soil Depth Calibration=0.90
+Create Stable Initial Safety Factor=1
+Minimum Safety Factor Calibration=0.00100
+Splash Delivery Ratio=0.10
+Particle Cohesion of Deposited Layer=0.50
+
+[OpenGL visualization]
+Light_Ambient_R=1.00
+Light_Ambient_G=1.00
+Light_Ambient_B=1.00
+Light_Ambient_A=0.30
+Light_Directional_R=1.00
+Light_Directional_G=1.00
+Light_Directional_B=1.00
+Light_Directional_A=0.70
+Light_Directional_X=-1.00
+Light_Directional_Y=-1.00
+Light_Directional_Z=-1.00
+Surface_Draw=1
+Surface_Micro_Elevation_Scale=99
+Surface_Mipmap_Distance_1=15000
+Surface_Mipmap_Distance_2=50000
+Surface_Vegetated_Small_Color_R=0.30
+Surface_Vegetated_Small_Color_G=0.50
+Surface_Vegetated_Small_Color_B=0.00
+Surface_Vegetated_Large_Color_R=0.06
+Surface_Vegetated_Large_Color_G=0.10
+Surface_Vegetated_Large_Color_B=0.04
+Surface_Bare_Color_R=0.20
+Surface_Bare_Color_G=0.16
+Surface_Bare_Color_B=0.03
+Surface_Roads_Color_R=0.1
+Surface_Roads_Color_R=0.1
+Surface_Roads_Color_R=0.1
+Surface_Buildings_Color_R=0.3
+Surface_Buildings_Color_G=0.3
+Surface_Buildings_Color_B=0.3
+Surface_Erosion_Color_R=0.15
+Surface_Erosion_Color_G=0.14
+Surface_Erosion_Color_B=0.04
+Surface_Erosion_Color_A=1
+Surface_Deposition_Color_R=0.35
+Surface_Deposition_Color_G=0.33
+Surface_Deposition_Color_B=0.13
+Surface_Deposition_Color_A=1
+Water_Draw=0
+Water_Reflectivity=100
+Water_Refractivity=100
+Water_Velocity_Scale=100
+Water_Micro_Elevation_Scale=100
+Water_Transparancy=100
+Water_Deep_Color_R=0.10
+Water_Deep_Color_G=0.10
+Water_Deep_Color_B=1.00
+Water_Deep_Color_A=0.80
+Water_Shallow_Color_R=0.80
+Water_Shallow_Color_G=0.60
+Water_Shallow_Color_B=1.00
+Water_Shallow_Color_A=0.05
+Water_Sediment_Color_R=0.15
+Water_Sediment_Color_G=0.14
+Water_Sediment_Color_B=0.04
+Water_Sediment_Color_A=1.00
+Roads_Draw=0
+Rain_Draw=0
+Clouds_Draw=0
+Roads_Distance=2000
+Buildings_Draw=0
+Buildings_Distance=200000
+Trees_Draw=0
+Trees_Distance=200000
+Trees_Instances=1000000
+Trees_Increment=1500
+Grass_Draw=0
+Grass_Distance=10000
+Grass_Instances=200000
+Grass_Increment=200
+Grass_Vertical_Scale=100
+
+[Output maps]
+Runoff maps in l/s/m=0
+Timeseries as PCRaster=0
+Erosion map units (0/1/2)=2
+Regular runoff output=1
+Output interval=3
+User defined output=0
+Output times=0
+CheckOutputMaps=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+CheckOutputMapsNUT=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+CheckOutputMapsMC=0,0,0,0,0,0,0
+CheckOutputMapsGUL=0,0,0,0,0
+
+[Texture classes]
+ClassMu=2,16,32,53,75,105
+
+[map names]
+
+[OutputBASIC]
+OUTRUNOFF=ro
+OUTCONC=conc
+OUTWH=wh
+OUTRWH=whc
+OUTTC=tc
+OUTEROS=det
+OUTDEPO=depo
+OUTSOILLOSS=sl
+OUTVELO=velo
+OUTINF=inf
+OUTSS=sstor
+OUTCHVOL=chanvol
+OUTTILED=
+OUTHMX=hmx
+OUTQF=qf
+OUTVF=vf
+OUTHMXWH=hmxwh
+OUTSED=sed
+OUTSAFETYFACTOR=safa
+OUTSLOPEFAILURE=slfa
+OUTDFHEIGHT=dfh
+OUTDFV=dfv
+OUTFPH=fph
+OUTSPH=sph
+OUTENTRAINMENT=entr
+OUTTIMESTEP=ts
+
+[Rainfall]
+ID=mask.map
+
+[Catchment]
+dem=dem.map
+grad=grad.map
+ldd=ldd.map
+outlet=outlet.map
+outpoint=outlet.map
+watershed=mask.map
+
+[Landuse]
+landunit=mask.map
+cover=per.map
+litter=litter.map
+lai=lai.map
+ch=ch.map
+road=zero.map
+grasswidth=grasswid.map
+smax=
+
+[Surface]
+rr=rr.map
+manning=n.map
+stonefrc=zero.map
+crustfrc=zero.map
+compfrc=zero.map
+hardsurf=zero.map
+
+[Erosion]
+coh=coh.map
+cohadd=cohadd.map
+aggrstab=aggrstab.map
+d50=d50.map
+d90=d90.map
+detmat=detmat.map
+sedmixdepth=sedmixdeth.map
+
+[Slope Stability]
+[Slope Stability]
+soildensity=soildensity.map
+soilifa=soilifa.map
+soilrocksize=soilrocksize.map
+failuremask=failuremask.map
+soilstructured=soilstructured.map
+[Bottom layer Slope Stability]
+soildensity2=soildensity2.map
+soilifa2=soilifa2.map
+soilcohesion2=soilcohesion2.map
+soilrocksize2=soilrocksize2.map
+soilstructured2=soilstructured2.map
+[Seismic Trigger]
+pga=pga.map
+pgatiming=pgatiming.map
+
+[Entrainment]
+debrismaterial=debrismaterial.map
+rocksize=rocksize.map
+rockdensity=rockdensity.map
+rockifa=rockifa.map
+
+[Infiltration]
+[Swatre]
+profmap=profile.map
+profcrst=profcrst.map
+profwltr=profwltr.map
+profgras=profgras.map
+inithead=inithead
+repelcell=repel.map
+[1st layer Green&Ampt/Smith&Parlange]
+ksat1=ksat1.map
+psi1=psi1.map
+thetas1=thetas1.map
+thetai1=thetai1.map
+soildep1=soildep1.map
+[2nd layer Green&Ampt/Smith&Parlange]
+ksat2=ksat2.map
+psi2=psi2.map
+thetas2=thetas2.map
+thetai2=thetai2.map
+soildep2=soildep2.map
+[Ksat subtraction]
+ksat1simple=ksat1.map
+[Special surfaces]
+ksatcrst=ksatcrst.map
+ksatcomp=ksatcomp.map
+ksatgras=ksatgras.map
+
+[Channels]
+[Channel properties]
+lddchan=lddchan.map
+chanwidth=chanwidt.map
+chanside=chanside.map
+changrad=changrad.map
+chanman=chanman.map
+chancoh=chancoh.map
+chandetmat=chandetmat.map
+chansedmixdepth=chansedmixdeth.map
+[Channel Infil]
+chanksat=chanksat.map
+[Channel BaseFLow]
+baseflow=baseflow.map
+inflowidCh=inflowidch.map
+inflowid=inflowid.map
+
+[Surface Flow]
+[Flow barriers]
+barriers=chanmaxq.map
+flowbarrierindex=flowbarrierindex.map
+flowbarriercrit=fbcrit.map
+maxvol=maxvolume.map
+[Flow Limiting]
+chandepth=chandepth.map
+chanlevee=chanlevee.map
+channelmaxcs=channelmaxcs.map
+channelconnected=channelconnected.map
+[Initial Volume]
+initiationtime=initiationtime.map
+initialfvolume=initialfvolume.map
+initialsvolume=initialsvolume.map
+initialsdensity=initialsdensity.map
+initialsrocksize=initialsrocksize.map
+initialsifa=initialsifa.map
+[Forced Volume condition]
+forcedfvolume=forcedfvolume.map
+forcedsvolume=forcedsvolume.map
+forcedsdensity=forcedsdensity.map
+forcedsrocksize=forcedsrocksize.map
+forcedsifa=forcedsifa.map
+[Flow cell boundary based Barriers]
+flowbarrierindex=flowbarrierindex.map
+flowbarriercrit=fbcrit.map
+
+[Snowmelt]
+SnowID=snowid.map
+
+[Houses]
+housecover=zero.map
+roofstore=zero.map
+drumstore=zero.map
